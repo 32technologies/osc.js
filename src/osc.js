@@ -713,14 +713,18 @@ var osc = osc || {};
 
     // Unsupported, non-API function.
     osc.collectArguments = function (args, options, dataCollection) {
-        if (!osc.isArray(args)) {
-            args = [args];
-        }
-
         dataCollection = dataCollection || {
             byteLength: 0,
             parts: []
         };
+
+        if (args === undefined) {
+            return dataCollection;
+        }
+
+        if (!osc.isArray(args)) {
+            args = [args];
+        }
 
         if (!options.metadata) {
             args = osc.annotateArguments(args);
